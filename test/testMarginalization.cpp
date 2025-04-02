@@ -72,11 +72,11 @@ int main(){
     std::vector<double> rho_vec;
     for (int i = 0; i < 2; i ++) {
         for (int j=0; j < 2 ; j++) {
-            Eigen::Vector3d C0p = Eigen::Vector3d(-3 + i*6.0/10, -4 + j*8.0/10, 8+ i*10.0/10);
-            Eigen::Vector3d C1p = T_C1C0.matrix().topLeftCorner(3,3)*C0p+T_C1C0.matrix().topRightCorner(3,1);
-            Eigen::Vector3d p0(C0p(0)/C0p(2), C0p(1)/C0p(2), 1);
+            Eigen::Vector3d C0p = Eigen::Vector3d(-3 + i*6.0/10, -4 + j*8.0/10, 8+ i*10.0/10); // point in camera0
+            Eigen::Vector3d C1p = T_C1C0.matrix().topLeftCorner(3,3)*C0p+T_C1C0.matrix().topRightCorner(3,1); // point in camera1
+            Eigen::Vector3d p0(C0p(0)/C0p(2), C0p(1)/C0p(2), 1); // point in image0 at depth 1
 
-            double z = C0p(2);
+            double z = C0p(2); // depth
             double rho = 1.0/z;
             Eigen::Vector3d p1(C1p(0)/C1p(2), C1p(1)/C1p(2), 1);
 
